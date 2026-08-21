@@ -166,8 +166,11 @@ h1 em{font-style:italic;color:var(--red)}
 
 /* ---- the gap ---- */
 .gap-block{margin:44px 0 0;border-top:2px solid var(--ink);padding-top:14px}
-.blank{height:34px;border-bottom:1px solid var(--rule-soft)}
+.blank{height:34px;border-bottom:1px solid var(--rule-soft);display:flex;
+  align-items:center;padding-left:12px}
 .blank:nth-child(odd){background:var(--bar)}
+.blank span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--rule);text-transform:lowercase;user-select:none}
 .gap-note{margin:22px 0 8px;padding:20px 24px;border:1px solid var(--red);background:var(--paper)}
 .gap-note h3{font-family:var(--serif);font-size:20px;margin:0 0 10px;color:var(--red)}
 .gap-note p{margin:0 0 10px;font-size:15.5px;max-width:66ch}.gap-note p:last-child{margin:0}
@@ -436,7 +439,11 @@ function render(){
       if(m.era==='gap'){
         gapOpen=true;
         out+='<div class="gap-block"><div class="era" style="border:0;padding-top:0"><h2>'+e.label+'</h2><span class="yrs">'+e.years+'</span><p class="note">'+e.note+'</p></div>';
-        for(var k=0;k<5;k++) out+='<div class="blank"></div>';
+        var quiet=['sep 2021 \u2014 dec 2021','jan 2022 \u2014 apr 2022',
+                   'may 2022 \u2014 aug 2022','sep 2022 \u2014 dec 2022',
+                   'jan 2023 \u2014 may 2023'];
+        for(var k=0;k<quiet.length;k++)
+          out+='<div class="blank"><span>'+quiet[k]+' \u00b7 nothing shipped</span></div>';
         out+='<div class="gap-note"><h3>Nothing shipped here — and unlike 2017, that is surprising</h3>'+
         '<p>633 days separate ALiBi (27 Aug 2021) from GQA (22 May 2023). ChatGPT launched inside this gap, and the loudest period in the field’s history produced nothing on this list.</p>'+
         '<p>This is not the longest silence on the page \u2014 680 quiet days precede the Sparse Transformer in 2019. But that one is unremarkable: nobody optimises a bill they are not yet paying. This gap is the anomaly, because the pressure was enormous and the output was still zero.</p>'+
