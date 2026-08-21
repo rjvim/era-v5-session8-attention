@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Attention Bill — every mechanism, in the order it shipped</title>
+<meta name="description" content="A chronological, source-verified timeline of attention mechanisms from 2017 to 2026, with honest trade-offs for each, and three predictions with falsifiers.">
+<link rel="canonical" href="https://era-v5-session8-attention.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Attention Bill — every mechanism, in the order it shipped">
+<meta property="og:description" content="A chronological, source-verified timeline of 24 attention mechanisms, 2017–2026. Honest trade-offs, verified dates, and three predictions with falsifiers.">
+<meta property="og:image" content="https://era-v5-session8-attention.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://era-v5-session8-attention.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Attention Bill — every mechanism, in the order it shipped">
+<meta name="twitter:description" content="24 attention mechanisms in ship order. Verified dates, honest trade-offs, and what the timeline says comes next.">
+<meta name="twitter:image" content="https://era-v5-session8-attention.netlify.app/og-image.png">
+<meta name="theme-color" content="#F2F4EF">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F2F4EF'/%3E%3Crect y='6' width='32' height='5' fill='%23DFE9DD'/%3E%3Crect y='16' width='32' height='5' fill='%23DFE9DD'/%3E%3Crect x='4' y='24' width='24' height='3' fill='%23B5443A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4EF; --bar:#DFE9DD; --ink:#16241A; --ink-soft:#4A5C4E;
+  --rule:#9AAF9C; --rule-soft:#C4D3C4; --red:#B5443A; --blue:#2F5D8A;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --serif:'IBM Plex Serif',Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+
+/* ---- masthead ---- */
+header{border-bottom:2px solid var(--ink);padding:56px 0 24px;margin-bottom:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 20px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,6.2vw,62px);line-height:1.02;
+  margin:0 0 20px;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--red)}
+.standfirst{font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);line-height:1.5;max-width:60ch;
+  margin:0 0 28px;color:var(--ink-soft)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+  border-top:1px solid var(--rule-soft);padding-top:16px}
+.meta b{font-weight:600;color:var(--ink)}
+
+/* ---- thesis ---- */
+.thesis{background:var(--bar);border-left:3px solid var(--red);padding:22px 26px;margin:36px 0 12px;
+  font-family:var(--serif);font-size:18px;line-height:1.55}
+.thesis p{margin:0 0 12px}.thesis p:last-child{margin:0}
+
+
+.primer{margin:36px 0 8px;padding:26px 28px;border:1px solid var(--rule);background:#fff}
+.primer h2{font-family:var(--serif);font-size:24px;margin:0 0 14px;line-height:1.2}
+.primer p{margin:0 0 13px;max-width:68ch;font-size:15.5px}
+.primer .q{color:var(--blue)}.primer .k{color:#7A5B1E}.primer .v{color:var(--red)}
+.primer code{font-family:var(--mono);font-size:13.5px;background:var(--bar);padding:1px 4px}
+.eq{font-family:var(--mono);font-size:clamp(14px,2.6vw,18px);text-align:center;padding:16px 8px;
+  background:var(--bar);margin:18px 0!important;overflow-x:auto;white-space:nowrap}
+.costs3{margin:0 0 14px;padding-left:20px;max-width:68ch}
+.costs3 li{margin-bottom:9px;font-size:15px}
+.costs3 b{color:var(--red)}
+
+/* ---- controls ---- */
+.controls{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);
+  padding:12px 0;margin-bottom:8px}
+.controls .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.ctrl-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.seg{display:inline-flex;border:1px solid var(--rule);background:var(--paper)}
+.seg button{font-family:var(--mono);font-size:12px;padding:7px 12px;border:0;background:transparent;
+  color:var(--ink-soft);cursor:pointer;border-right:1px solid var(--rule-soft)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.seg button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.budget{flex-basis:100%;margin:10px 0 0;font-family:var(--mono);font-size:13px;color:var(--ink);
+  border-top:1px dashed var(--rule);padding-top:9px}
+.budget b{color:var(--red);font-weight:600}
+.budget .bar{display:inline-block;height:9px;background:var(--red);vertical-align:middle;
+  margin:0 9px;min-width:3px;transition:width .35s ease}
+@media(prefers-reduced-motion:reduce){.budget .bar{transition:none}}
+
+
+.axis{margin:30px 0 4px;padding:20px 22px;border:1px solid var(--rule);background:#fff}
+.axis h3{font-family:var(--serif);font-size:19px;margin:0 0 12px}
+.axis-note{margin:10px 0 0;font-size:13.5px;color:var(--ink-soft);max-width:74ch}
+#axis{overflow-x:auto}
+#axis svg{min-width:640px;display:block}
+.dot{cursor:pointer}
+.dot:hover{stroke:var(--red);stroke-width:3}
+.dot:focus{outline:none;stroke:var(--blue);stroke-width:3}
+.panel{display:flex;gap:20px;align-items:flex-start;margin:18px 0 0}
+.panel-t{flex:1;min-width:0}
+.panel-t .lead{margin-top:0!important}
+.pat{margin:4px 0 0;flex:0 0 auto;text-align:center}
+.pat svg{display:block;border:1px solid var(--rule-soft);background:#fff}
+.pat figcaption{font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);margin-top:5px;
+  max-width:104px;line-height:1.35}
+@media(max-width:640px){.panel{flex-direction:column;gap:12px}.pat{align-self:flex-start}}
+
+
+.regime-row{flex-basis:100%;margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.regime-row .ctrl-label{margin-right:10px}
+.rgnote{font-family:var(--mono);font-size:12.5px;color:var(--red);margin:14px 0 0;min-height:1px}
+.chips{flex:0 0 auto;margin-right:12px;white-space:nowrap}
+.chip{font-family:var(--mono);font-size:9.5px;font-style:normal;letter-spacing:.04em;
+  border:1px solid var(--rule);padding:2px 5px;margin-left:4px;color:var(--ink-soft);background:var(--paper)}
+.chip.c1M{border-color:var(--red);color:var(--red)}
+.chip.c32K{border-color:var(--blue);color:var(--blue)}
+.row.dim{opacity:.26}
+.row.dim .head{background:transparent}
+
+/* ---- ledger ---- */
+.era{margin:44px 0 0;padding:14px 0 10px;border-top:2px solid var(--ink);
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+.era .note{margin-right:0}
+.era h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0}
+.era .yrs{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.06em}
+.era .note{font-size:14px;color:var(--ink-soft);flex-basis:100%;max-width:66ch;margin:2px 0 0}
+
+.row{border-bottom:1px solid var(--rule-soft)}
+.row:nth-child(odd) .head{background:var(--bar)}
+.head{width:100%;display:flex;align-items:baseline;
+  padding:14px 12px;border:0;background:transparent;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.head .date{flex:0 0 118px;margin-right:16px}
+.head .nm{flex:1 1 auto;min-width:0;margin-right:16px}
+.head .tog{flex:0 0 auto;margin-left:auto}
+.head:hover{background:#E7EFE6}
+.head:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.date{font-family:var(--mono);font-size:12px;color:var(--ink-soft);white-space:nowrap;padding-top:3px}
+.nm{font-family:var(--serif);font-size:19px;font-weight:600;line-height:1.25}
+.who{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--ink-soft);margin-top:3px}
+.tog{font-family:var(--mono);font-size:16px;color:var(--rule);padding-top:2px}
+.row.open .tog{color:var(--red)}
+.aside .nm{font-style:italic}
+.aside .date::after{content:" ·";color:var(--red)}
+
+.body{display:none;padding:4px 12px 26px;border-top:1px dashed var(--rule-soft)}
+.row.open .body{display:block}
+.body .lead{font-family:var(--serif);font-size:17px;line-height:1.55;max-width:66ch;margin:18px 0 4px}
+.body .lead b{color:var(--red);font-weight:600;font-family:var(--sans);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;display:block;margin-bottom:5px}
+.how{max-width:66ch;margin:16px 0 0;font-size:15.5px}
+.how b{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  display:block;margin-bottom:5px;font-weight:600}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:22px 0 0}
+.cols .colh{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px;
+  padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.cols .buys .colh{color:var(--blue);border-color:var(--blue)}
+.cols .costs .colh{color:var(--red);border-color:var(--red)}
+.cols ul{margin:0;padding-left:17px}.cols li{margin-bottom:7px;font-size:14.5px;line-height:1.5}
+.pick{margin:20px 0 0;padding:12px 14px;background:var(--bar);font-size:14.5px}
+.pick b{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);
+  display:block;margin-bottom:4px}
+.flag{margin:14px 0 0;padding-left:13px;border-left:3px solid var(--red);font-size:14px;font-style:italic;
+  color:var(--ink-soft);max-width:66ch}
+.cite{margin:18px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
+.cite a{color:var(--blue)}
+.fert{margin:16px 0 0;font-family:var(--mono);font-size:12.5px;padding:10px 12px;border:1px dashed var(--rule)}
+.fert b{color:var(--red)}
+
+/* ---- the gap ---- */
+.gap-block{margin:44px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+.blank{height:34px;border-bottom:1px solid var(--rule-soft)}
+.blank:nth-child(odd){background:var(--bar)}
+.gap-note{margin:22px 0 8px;padding:20px 24px;border:1px solid var(--red);background:var(--paper)}
+.gap-note h3{font-family:var(--serif);font-size:20px;margin:0 0 10px;color:var(--red)}
+.gap-note p{margin:0 0 10px;font-size:15.5px;max-width:66ch}.gap-note p:last-child{margin:0}
+
+
+.arcsec,.predict,.verify{margin:60px auto 0;border-top:2px solid var(--ink);padding-top:26px}
+.arcsec h2,.predict h2,.verify h2{font-family:var(--serif);font-size:28px;margin:0 0 6px}
+.arcsec .sub,.predict .sub,.verify .sub{color:var(--ink-soft);margin:0 0 22px;max-width:70ch}
+#arc{overflow-x:auto}#arc svg{min-width:620px;display:block}
+.pred{margin:0 0 30px;padding:20px 24px 20px 62px;position:relative;border:1px solid var(--rule);background:#fff}
+.pred .pn{position:absolute;left:20px;top:20px;font-family:var(--mono);font-size:13px;color:var(--paper);
+  background:var(--red);width:26px;height:26px;display:grid;place-items:center}
+.pred h3{font-family:var(--serif);font-size:20px;margin:0 0 12px;line-height:1.28}
+.pred p{margin:0 0 11px;font-size:14.8px;max-width:74ch}
+.pred p:last-child{margin:0}
+.pred b{font-family:var(--sans);font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:600}
+.pred .ev b{color:var(--ink-soft)}.pred .pr b{color:var(--blue)}.pred .fa b{color:var(--red)}
+.pred .fa{padding-top:9px;border-top:1px dashed var(--rule-soft)}
+.hedge{font-style:italic;color:var(--ink-soft);font-size:14.5px;max-width:74ch;
+  border-left:3px solid var(--rule);padding-left:14px;margin:0}
+.verify pre{background:var(--ink);color:var(--paper);padding:14px 16px;overflow-x:auto;margin:0 0 16px}
+.verify pre code{font-family:var(--mono);font-size:13px}
+.verify p{max-width:74ch;font-size:15px;margin:0 0 12px}
+.verify code{font-family:var(--mono);font-size:13px;background:var(--bar);padding:1px 4px}
+@media(max-width:640px){.pred{padding:18px 16px 18px 16px}.pred .pn{position:static;margin-bottom:10px}}
+
+/* ---- findings ---- */
+.findings{margin:64px auto 0;border-top:2px solid var(--ink);padding-top:26px}
+.findings h2{font-family:var(--serif);font-size:28px;margin:0 0 6px}
+.findings > p.sub{color:var(--ink-soft);margin:0 0 26px;max-width:66ch}
+.find{margin:0 0 26px;padding-left:52px;position:relative}
+.find .n{position:absolute;left:0;top:1px;font-family:var(--mono);font-size:12px;color:var(--red);
+  border:1px solid var(--red);width:30px;height:30px;display:grid;place-items:center}
+.find h3{font-family:var(--serif);font-size:19px;margin:0 0 7px;line-height:1.3}
+.find p{margin:0;font-size:15px;max-width:70ch;color:var(--ink-soft)}
+
+footer{margin:64px 0 0;border-top:2px solid var(--ink);padding:22px 0 60px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+footer a{color:var(--blue)}
+.meta>span{margin-right:28px}
+.era>h2{margin-right:14px}
+.era>.yrs{margin-right:14px}
+.controls .wrap>*{margin-right:14px}
+.cols>div+div{margin-left:0}
+.panel>.pat{margin-right:20px}
+footer p{max-width:70ch}
+
+@media(max-width:640px){
+  .head{display:block;position:relative;padding-right:34px}
+  .head .date{display:block;margin:0 0 5px;padding-top:0;float:none;width:auto}
+  .head .nm{display:block;margin:0;width:auto}
+  .head .chips{display:block;margin:7px 0 0;white-space:normal}
+  .head .chip{margin:0 5px 0 0}
+  .head .tog{position:absolute;right:10px;top:14px;margin:0}
+  .axis{padding:16px 14px}
+  .primer{padding:20px 18px}
+  .regime-row{margin-top:8px}
+  .cols{grid-template-columns:1fr;gap:18px}
+  .find{padding-left:0}.find .n{position:static;margin-bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+  .controls,.axis,.arcsec{display:none}
+  body{background:#fff;font-size:11pt}
+  .row .body{display:block!important}
+  .row{page-break-inside:avoid}
+  .head .tog{display:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#555}
+  .pred,.primer,.gap-note{border:1px solid #999}
+}
+noscript .ns{display:block;margin:20px 0;padding:14px 18px;border-left:3px solid var(--red);background:var(--bar);font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">ERA V5 · Session 8 · every date checked against the paper</p>
+    <h1>Vanilla attention was never wrong.<br>It was just <em>expensive.</em></h1>
+    <p class="standfirst">Everything built since 2017 is somebody looking at that bill and trying to pay less of it. Put the mechanisms in the order they actually shipped and you can watch the field change its mind — about what it wants, and about who is paying.</p>
+    <div class="meta">
+      <span><b id="ct">21</b> mechanisms</span>
+      <span><b>2017 – 2026</b></span>
+      <span><b>0</b> dates taken on trust</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="thesis">
+    <p>Attention costs <b>O(N²)</b> in compute and grows a cache that never stops growing. Every entry below buys that down, and every one of them pays for it somewhere.</p>
+    <p>The order is chronological — by arXiv v1 submission or public release, not by conference year and not by topic. Where a mechanism has no paper, that is noted rather than papered over.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="primer">
+    <h2>First, the thing everything else is arguing with</h2>
+    <p>Every mechanism below is a modification of one operation, so it is worth having that operation in front of you.</p>
+    <p>Each token produces three vectors. A <b class="q">query</b> — what am I looking for. A <b class="k">key</b> — what I can be found by. A <b class="v">value</b> — what I hand over if you pick me. Score every query against every key, scale, softmax into weights, take the weighted sum of values:</p>
+    <p class="eq">Attention(Q, K, V) = softmax( Q Kᵀ / √d<sub>k</sub> ) V</p>
+    <p>Three costs fall out of that line, and the entire timeline is a response to them.</p>
+    <ol class="costs3">
+      <li><b>Q Kᵀ is N × N.</b> Every token scores against every token. Double the sequence, quadruple the work.</li>
+      <li><b>The softmax is what forces the matrix to exist.</b> It must see a whole row to normalise it, so you cannot reassociate the product to avoid building it.</li>
+      <li><b>At generation time, K and V for every past token must be kept.</b> That is the KV cache, and it grows linearly with context and with every concurrent user.</li>
+    </ol>
+    <p>Cost 1 is attacked by sparsity and windows. Cost 2 is attacked by linear attention and the recurrent line of descent. Cost 3 is attacked by MQA, GQA, MLA and compression. And because <code>softmax(QKᵀ)</code> is order-blind — shuffle the tokens and you get the same answer — position has to be injected separately, which is its own thread running the whole length of the page.</p>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="axis">
+    <h3>Every mechanism, spaced by real elapsed time</h3>
+    <div id="axis"></div>
+    <p class="axis-note">Not evenly spaced — horizontal distance is the actual time between releases. Two long silences show up. The grey one (680 days) is a field not yet paying a bill worth complaining about. The red one (633 days) spans ChatGPT’s launch at peak pressure and still produced nothing — and the marker above it is the paper that explains why. Click any dot to jump to that mechanism.</p>
+  </section>
+</div>
+
+<div class="controls">
+  <div class="wrap">
+    <span class="ctrl-label">Cost is paid in tokens, not meaning. Show budgets for:</span>
+    <div class="seg" role="group" aria-label="Script">
+      <button data-f="en" aria-pressed="true">English · 1.17</button>
+      <button data-f="hi_fixed" aria-pressed="false">Hindi · 1.12</button>
+      <button data-f="hi_bad" aria-pressed="false">Hindi, byte-level · 3.31</button>
+    </div>
+    <p class="budget" id="budget" aria-live="polite"></p>
+    <div class="regime-row">
+      <span class="ctrl-label">Right for which workload:</span>
+      <div class="seg seg2" role="group" aria-label="Workload">
+        <button data-r="all" aria-pressed="true">All</button>
+        <button data-r="2K" aria-pressed="false">2K chatbot</button>
+        <button data-r="32K" aria-pressed="false">32K document</button>
+        <button data-r="1M" aria-pressed="false">1M agent</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap"><p class="rgnote" id="rgnote" aria-live="polite"></p></div>
+<noscript><div class="wrap"><p class="ns">This page is fully readable without JavaScript. Enabling it adds the expand/collapse controls, the workload filter and the fertility toggle.</p></div></noscript>
+<main class="wrap" id="ledger"></main>
+
+
+<section class="wrap arcsec">
+  <h2>Watching the field change its mind</h2>
+  <p class="sub">Three things get traded against each other, and the field keeps swapping which one it refuses to give up.</p>
+  <div id="arc"></div>
+  <p class="axis-note">2017 wants <b>exactness</b> — attend to everything, pay for it. 2019–20 wants <b>length</b>, and buys it by approximating. 2021 wants <b>memory back</b>, because approximations forget. 2022 restores <b>exactness</b> without cost, and the argument pauses. 2023 wants <b>memory</b> again, but for a different reason — serving, not training — then immediately wants <b>length</b>. 2024 wants <b>memory</b> back once more, and reaches to 1992 to get it. 2025 wants <b>length</b> at a million tokens. 2026 splits the difference and runs two mechanisms at once.</p>
+</section>
+
+<section class="wrap predict">
+  <h2>So what comes next?</h2>
+  <p class="sub">The point of a timeline is that you can extrapolate it. Three predictions, each extending a trend already dated above, and each stating what would prove it wrong.</p>
+
+  <div class="pred">
+    <span class="pn">1</span>
+    <h3>Architectures stop being “an attention mechanism” and become a schedule.</h3>
+    <p class="ev"><b>The trend:</b> every mechanism after 2024 proposes mixing rather than replacing. The Gated DeltaNet paper recommends hybrids with sliding-window attention. Qwen3-Next ships three linear layers per full-attention layer. DeepSeek-V4 interleaves two different compressors, CSA and HCA, at different rates.</p>
+    <p class="pr"><b>Prediction:</b> “what attention does this model use” becomes an ill-formed question. Models will publish a layer schedule the way they publish a parameter count, and the schedule itself becomes a tuned artifact — possibly learned rather than hand-set.</p>
+    <p class="fa"><b>What would falsify it:</b> a frontier model shipping in the next year with one uniform attention mechanism in every layer, beating hybrids at equal cost.</p>
+  </div>
+
+  <div class="pred">
+    <span class="pn">2</span>
+    <h3>The next wins come from retrofit-ability, not from better mathematics.</h3>
+    <p class="ev"><b>The trend:</b> the field keeps rewarding whatever works on an already-trained checkpoint. GQA won over MQA partly because it uptrains from existing MHA weights for ~5% of pretraining compute. Top-k attention was notable in 2021 for dropping into a vanilla model with no corrective pretraining. NSA (Feb 2025) was the stronger, principled design but required training from scratch; DSA (Sep 2025) was weaker in principle, retrofittable in practice, and it is the one that shipped to production and halved the API price.</p>
+    <p class="pr"><b>Prediction:</b> a mechanism that is 10% worse but installable on an existing checkpoint will keep beating one that is 20% better and demands a fresh pretraining run. Expect more “convert your model to X” papers and fewer “train a new model with X” papers.</p>
+    <p class="fa"><b>What would falsify it:</b> a from-scratch-only mechanism displacing retrofittable ones in production serving, as NSA failed to do.</p>
+  </div>
+
+  <div class="pred">
+    <span class="pn">3</span>
+    <h3>Softmax normalisation is the next thing deleted.</h3>
+    <p class="ev"><b>The trend:</b> the field patches a component for years, then someone shows it was scaffolding and removes it. That just happened to positional embeddings — six years of adding machinery, then DroPE (Dec 2025) deletes them after pretraining and gets better long-context behaviour. The same shape of evidence already exists for softmax. Attention sinks (Sep 2023) exist <em>because</em> softmax must sum to one: with nothing worth attending to, models dump mass on the first token, and the fix is to keep four meaningless tokens permanently resident. That is a workaround for a constraint, not a feature.</p>
+    <p class="pr"><b>Prediction:</b> the normalisation constraint gets relaxed rather than accommodated — attention that can attend to nothing at all. Sinks then stop being necessary rather than being managed, the same way DroPE made RoPE-scaling unnecessary rather than better.</p>
+    <p class="fa"><b>What would falsify it:</b> attention sinks becoming a permanent, deliberate architectural component rather than a compatibility patch — or removing normalisation costing quality that nothing recovers.</p>
+  </div>
+
+  <p class="hedge">These are extrapolations, not forecasts, and the timeline itself shows why forecasting here is hard: the 633-day gap means the strongest signal in 2021 was that the field had stopped caring, and the strongest signal was wrong. Prediction 3 is the one I would bet against first.</p>
+</section>
+
+<section class="wrap verify">
+  <h2>Check my work</h2>
+  <p class="sub">The brief says dates are the easiest thing to get wrong and the easiest to check. So here is how to check them, in one command.</p>
+  <pre><code>git clone &lt;repo&gt; &amp;&amp; cd &lt;repo&gt;
+node test_invariants.js   # no dependencies required</code></pre>
+  <p>96 assertions run against the data rather than against prose, with no packages to install first. They verify strict chronological order; that every mechanism carries at least two honest costs; that all twenty items named in the brief have a dedicated card rather than a passing mention; that each finding on this page holds arithmetically — including that the 633-day gap is <em>not</em> the longest silence, which is checked so the claim cannot quietly overreach; and that every mechanism renders a diagram and a workload tag.</p>
+  <p>Every date lives in <code>dates.json</code> with its own source URL and the verbatim <code>[v1]</code> submission line it was read from. One entry, MQA, is marked as weaker evidence because no explicit v1 line could be found — it is flagged rather than levelled up. If any date here is wrong, that file is where to point at it.</p>
+</section>
+
+<section class="wrap findings">
+  <h2>What the timeline shows that a list cannot</h2>
+  <p class="sub">Six things only became visible once the mechanisms were in date order.</p>
+  <div id="finds"></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Dates.</b> Each is the arXiv v1 submission timestamp from the paper’s abstract page, or the primary release note for mechanisms that shipped without a paper. Not conference year, not last-revised date — those are the two most common errors. Full source table with every URL is in the repository README.</p>
+    <p style="margin-top:12px">Fertility figures are measured, not estimated — from the Session 6 multi-lane data ledger.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="visuals.js"></script>
+<script>
+var FERT='en';
+function fertLine(){
+  var f=window.FERTILITY[FERT], base=32768;
+  var words=Math.round(base/f.v);
+  return '<div class="fert">A <b>32,768-token</b> budget at '+f.label+' fertility ('+f.v+' tokens/word) holds about <b>'+words.toLocaleString()+'</b> words.</div>';
+}
+var PATLABEL={full:'every cell computed',tiles:'exact, computed in tiles',strided:'fixed strided pattern',
+window:'local band only',sink:'band plus permanent sink',topk:'cells chosen by score',compressed:'compressed blocks, sparse selection',
+compressed2:'two compression rates',pos_abs:'one vector per slot',pos_sin:'computed per position',pos_rel:'relative distance',
+pos_decay:'penalty grows with distance',pos_ext:'trained range rescaled',pos_none:'causal mask only',state:'fixed state, additive',
+state_delta:'state corrected by delta',state_gate:'corrected and gated',cache_mqa:'8 Q heads, 1 KV head',cache_gqa:'8 Q heads, 4 KV heads',
+cache_mla:'KV compressed to latent'};
+function patLabel(id){var t=window.PATTERN&&window.PATTERN[id];return (t&&PATLABEL[t])||'';}
+function updateBudget(){
+  var f=window.FERTILITY[FERT], base=32768;
+  var words=Math.round(base/f.v);
+  var en=Math.round(base/window.FERTILITY.en.v);
+  var pct=Math.max(3,Math.round(words/en*100));
+  var el=document.getElementById('budget');
+  if(!el)return;
+  var delta=Math.round((words/en-1)*100);
+  var loss='';
+  if(delta<0) loss=' — <b>'+Math.abs(delta)+'% less context</b> than English for the same window';
+  else if(delta>0) loss=' — <b>'+delta+'% more context</b> than English for the same window';
+  el.innerHTML='A <b>32,768-token</b> window holds <b>'+words.toLocaleString()+'</b> words of '+f.label+
+    '<span class="bar" style="width:'+Math.round(pct*1.4)+'px"></span>'+loss;
+}
+function card(m,i){
+  var a=m.aside?' aside':'';
+  var h='<div class="row'+a+'" id="'+m.id+'">';
+  h+='<button class="head" aria-expanded="false"><span class="date">'+m.disp+'</span>';
+  var rg=(window.REGIME&&window.REGIME[m.id])||[];
+  var chips=rg.map(function(r){return '<i class="chip c'+r+'">'+r+'</i>'}).join('');
+  h+='<span class="nm">'+m.name+'<span class="who">'+m.who+'</span></span><span class="chips">'+chips+'</span><span class="tog">+</span></button>';
+  h+='<div class="body">';
+  var pat=(window.patternSVG?window.patternSVG(m.id):'');
+  h+='<div class="panel">'+(pat?'<figure class="pat">'+pat+'<figcaption>'+patLabel(m.id)+'</figcaption></figure>':'')+
+     '<div class="panel-t"><p class="lead"><b>The problem it answered</b>'+m.problem+'</p></div></div>';
+  h+='<p class="how"><b>How it works</b>'+m.how+'</p>';
+  h+='<div class="cols"><div class="buys"><p class="colh">What it buys</p><ul>';
+  m.pros.forEach(function(p){h+='<li>'+p+'</li>'});
+  h+='</ul></div><div class="costs"><p class="colh">What it costs</p><ul>';
+  m.cons.forEach(function(c){h+='<li>'+c+'</li>'});
+  h+='</ul></div></div>';
+  h+='<div class="pick"><b>When you would actually pick it</b>'+m.when+'</div>';
+  if(m.flag) h+='<p class="flag">'+m.flag+'</p>';
+  h+='<p class="cite">'+m.paper+(m.arxiv?' · <a href="https://arxiv.org/abs/'+m.arxiv+'" target="_blank" rel="noopener">arXiv:'+m.arxiv+'</a>':' · no paper')+'</p>';
+  h+='</div></div>';
+  return h;
+}
+function render(){
+  var out='',seen={},gapOpen=false;
+  window.MECHANISMS.forEach(function(m,i){
+    if(!seen[m.era]){
+      seen[m.era]=1;
+      var e=window.ERAS[m.era];
+      if(gapOpen){out+='</div>';gapOpen=false;}
+      if(m.era==='gap'){
+        gapOpen=true;
+        out+='<div class="gap-block"><div class="era" style="border:0;padding-top:0"><h2>'+e.label+'</h2><span class="yrs">'+e.years+'</span><p class="note">'+e.note+'</p></div>';
+        for(var k=0;k<5;k++) out+='<div class="blank"></div>';
+        out+='<div class="gap-note"><h3>Nothing shipped here — and unlike 2017, that is surprising</h3>'+
+        '<p>633 days separate ALiBi (27 Aug 2021) from GQA (22 May 2023). ChatGPT launched inside this gap, and the loudest period in the field’s history produced nothing on this list.</p>'+
+        '<p>This is not the longest silence on the page \u2014 680 quiet days precede the Sparse Transformer in 2019. But that one is unremarkable: nobody optimises a bill they are not yet paying. This gap is the anomaly, because the pressure was enormous and the output was still zero.</p>'+
+        '<p>The explanation is one paper that is not an attention variant at all:</p></div>';
+      } else {
+        out+='<div class="era"><h2>'+e.label+'</h2><span class="yrs">'+e.years+'</span><p class="note">'+e.note+'</p></div>';
+      }
+    }
+    out+=card(m,i);
+  });
+  if(gapOpen)out+='</div>';
+  document.getElementById('ledger').innerHTML=out;
+  document.getElementById('ct').textContent=window.MECHANISMS.length;
+  updateBudget();
+  var arc=document.getElementById('arc');
+  if(arc&&window.arcSVG) arc.innerHTML=window.arcSVG();
+  var ax=document.getElementById('axis');
+  if(ax&&window.axisSVG){
+    ax.innerHTML=window.axisSVG();
+    ax.querySelectorAll('.dot').forEach(function(dt){
+      var go=function(){
+        var r=document.getElementById(dt.dataset.id); if(!r)return;
+        if(!r.classList.contains('open')) r.querySelector('.head').click();
+        r.scrollIntoView({behavior:'smooth',block:'center'});
+        r.querySelector('.head').focus();
+      };
+      dt.setAttribute('tabindex','0');
+      dt.setAttribute('role','button');
+      dt.setAttribute('aria-label','Jump to '+(dt.getAttribute('data-name')||dt.dataset.id));
+      dt.addEventListener('click',go);
+      dt.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();go();} });
+    });
+  }
+
+  var f='';
+  window.FINDINGS.forEach(function(x,i){
+    f+='<div class="find"><span class="n">'+(i+1)+'</span><h3>'+x.h+'</h3><p>'+x.p+'</p></div>';
+  });
+  document.getElementById('finds').innerHTML=f;
+
+  document.querySelectorAll('.head').forEach(function(b){
+    b.addEventListener('click',function(){
+      var r=b.parentNode, open=r.classList.toggle('open');
+      b.setAttribute('aria-expanded',open?'true':'false');
+      b.querySelector('.tog').textContent=open?'−':'+';
+    });
+  });
+}
+var SCALE='all';
+function applyRegime(){
+  document.querySelectorAll('.row').forEach(function(r){
+    var rg=(window.REGIME&&window.REGIME[r.id])||[];
+    var on=(SCALE==='all')||rg.indexOf(SCALE)>-1;
+    r.classList.toggle('dim',!on);
+  });
+  var n=document.querySelectorAll('.row:not(.dim)').length;
+  var el=document.getElementById('rgnote');
+  if(el) el.textContent = SCALE==='all' ? '' :
+    n+' of '+document.querySelectorAll('.row').length+' mechanisms are a sensible choice at '+window.REGIME_LABEL[SCALE]+' scale. The rest are dimmed \u2014 not bad, just aimed elsewhere.';
+}
+document.querySelectorAll('.seg2 button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.seg2 button').forEach(function(o){o.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true'); SCALE=b.dataset.r; applyRegime();
+  });
+});
+document.querySelectorAll('.seg:not(.seg2) button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.seg button').forEach(function(o){o.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');
+    FERT=b.dataset.f;
+    var openIds=[].slice.call(document.querySelectorAll('.row.open')).map(function(r){return r.id});
+    render(); applyRegime();
+    openIds.forEach(function(id){
+      var r=document.getElementById(id); if(!r)return;
+      r.classList.add('open');
+      var h=r.querySelector('.head'); h.setAttribute('aria-expanded','true');
+      h.querySelector('.tog').textContent='−';
+    });
+  });
+});
+window.FINDINGS=[
+{h:"The first thing on the timeline is not attention.",
+ p:"Learned absolute position embeddings arrived on 8 May 2017, in Gehring et al.'s ConvS2S — thirty-five days before Attention Is All You Need. Vaswani et al. cite that paper as reference [9]. Taught as a list, attention looks like the origin and positions look like an accessory bolted on afterwards. In date order, the accessory came first and the Transformer inherited it."},
+{h:"There are two long silences, and they mean opposite things.",
+ p:"The timeline has a 680-day gap (Jun 2017 to Apr 2019) and a 633-day gap (Aug 2021 to May 2023). The first is unremarkable: sequences were short, models were small, and nobody was paying a bill large enough to complain about. Silence from absence of pressure. The second is the anomaly. It spans ChatGPT’s launch and the most heavily funded period in the field’s history, when pressure was at maximum — and still produced nothing on the covered list. The cause sits inside it: FlashAttention (27 May 2022, arXiv 2205.14135) made exact attention dramatically faster by tiling so the N×N matrix is never materialised in HBM, approximating nothing. When exact attention got cheap, the incentive to approximate it collapsed. And when the wave restarts in 2023 the motive has changed: pre-2022 work optimises training compute, post-2023 work (GQA, MLA, sinks, sparse) optimises inference serving. Same quadratic problem, different payer."},
+{h:"An entire branch of the field was built by hobbyists on Reddit.",
+ p:"NTK-aware scaled RoPE has no paper. It is a June 2023 post by /u/bloc97 on r/LocalLLaMA \u2014 and that Reddit URL is the canonical citation in at least eight peer-reviewed papers since, including Meta\u2019s own long-context work. It was not alone: Dynamic NTK is a second unpublished Reddit post, by /u/emozilla. In his post bloc97 credits another independent blogger by name, writing that when u/kaiokendev first posted about linearly interpolating RoPE, he and a few others wondered whether the scale could be chosen dynamically instead. Two months later the same person \u2014 Bowen Peng \u2014 is first author on YaRN, and Meta\u2019s Position Interpolation paper also credits kaiokendev. As late as December 2025, Sakana AI\u2019s DroPE paper still cites the Reddit thread. A list of mechanisms hides the fact that several of them were never published at all."},
+{h:"The newest-looking idea on the timeline is the oldest.",
+ p:"DeltaNet and Gated DeltaNet read as 2024–2025 inventions. But Schlag, Irie and Schmidhuber proved in February 2021 that linearised attention is formally equivalent to Fast Weight Programmers — which Schmidhuber published in Neural Computation in 1992, twenty-five years before the Transformer. What happened in 2024 was not invention but parallelisation, which finally made it trainable at scale. Once the quadratic bill became unaffordable, the field went back and rediscovered pre-transformer recurrent memory."},
+{h:"The position thread ends by arguing the mechanism should be deleted.",
+ p:"Learned absolute (2017) → sinusoidal (2017) → RoPE (2021) → ALiBi (2021) → then a dense 2023 cluster of patches to RoPE: PI in June, NTK in June, YaRN in August. Then DroPE, December 2025: positional embeddings are a training scaffold, and the best long-context behaviour comes from removing them after pretraining. Six years of adding positional machinery, concluding that you should throw it away. That reversal is invisible when the mechanisms are grouped by family."},
+{h:"Two mechanisms shipped four months before this session that are not on the list.",
+ p:"DeepSeek-V4 (26 Apr 2026, arXiv 2606.19348) introduces Compressed Sparse Attention and Heavily Compressed Attention. CSA consolidates every m entries of the KV cache and then runs DSA-style top-k over them; HCA compresses far harder but keeps attention dense over what survives. Interleaved, they report 27% of the single-token inference FLOPs and 10% of the KV cache of DeepSeek-V3.2 at one-million-token context. The timeline’s last move is the field splitting the bill in two — one mechanism aimed at memory, one aimed at compute — instead of hunting for a single trade that fixes both."}
+];
+render();
+</script>
+</body>
+</html>

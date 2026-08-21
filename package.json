@@ -1,0 +1,12 @@
+{
+  "name": "attention-bill",
+  "version": "1.0.0",
+  "description": "A chronological, source-verified timeline of attention mechanisms, 2017-2026.",
+  "private": true,
+  "scripts": {
+    "test": "node test_invariants.js",
+    "audit": "node audit.js",
+    "prerender": "node prerender.js closed prerendered.html"
+  },
+  "devDependencies": { "jsdom": "^24.0.0" }
+}

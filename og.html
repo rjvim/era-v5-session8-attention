@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F2F4EF;--bar:#DFE9DD;--ink:#16241A;--ink-soft:#4A5C4E;--rule:#9AAF9C;--rule-soft:#C4D3C4;--red:#B5443A}
+*{box-sizing:border-box}
+body{margin:0;width:1200px;height:630px;background:var(--paper);font-family:'IBM Plex Serif',Georgia,serif;
+ padding:58px 64px;position:relative;overflow:hidden}
+.bars{position:absolute;inset:0;z-index:0}
+.bars i{position:absolute;left:0;right:0;height:34px;background:var(--bar);opacity:.55}
+.c{position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 26px}
+h1{font-size:70px;line-height:1.03;margin:0 0 24px;color:var(--ink);font-weight:600;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--red)}
+p.s{font-size:25px;line-height:1.4;color:var(--ink-soft);margin:0;max-width:23ch}
+.stats{position:absolute;right:64px;top:58px;text-align:right;font-family:'IBM Plex Mono',monospace;z-index:2}
+.stats b{display:block;font-size:62px;color:var(--ink);line-height:1;margin-bottom:6px}
+.stats span{font-size:13px;color:var(--ink-soft);letter-spacing:.09em;text-transform:uppercase;display:block;max-width:180px;margin-left:auto;line-height:1.5}
+.rule{position:absolute;left:64px;right:64px;bottom:130px;height:2px;background:var(--ink)}
+.dots{position:absolute;left:64px;right:64px;bottom:96px;height:26px}
+.dots i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--ink);top:0}
+.dots i.g{background:var(--red);width:14px;height:14px;top:-2px}
+.gap{position:absolute;bottom:96px;height:44px;background:rgba(181,68,58,.14)}
+</style></head><body>
+<div class="bars"><i style="top:0"></i><i style="top:68px"></i><i style="top:136px"></i><i style="top:204px"></i><i style="top:272px"></i><i style="top:340px"></i><i style="top:408px"></i><i style="top:476px"></i><i style="top:544px"></i></div>
+<div class="c">
+<p class="eyebrow">ERA V5 · Session 8 · 2017 – 2026</p>
+<h1>Vanilla attention was<br>never wrong. It was<br>just <em>expensive.</em></h1>
+<p class="s">Every mechanism since, in the order it actually shipped.</p>
+</div>
+<div class="stats"><b>24</b><span>mechanisms<br>0 dates taken on trust</span></div>
+<div class="rule"></div>
+<div class="gap" id="gap"></div>
+<div class="dots" id="d"></div>
+<script>
+var t0=Date.parse('2017-01-01'),t1=Date.parse('2026-09-01'),W=1072;
+var ds=['2017-05-08','2017-06-12','2017-06-12','2019-04-23','2019-11-06','2020-04-10','2020-06-29','2021-02-22','2021-04-20','2021-06-13','2021-08-27','2022-05-27','2023-05-22','2023-06-15','2023-06-27','2023-08-31','2023-09-29','2024-05-07','2024-06-10','2024-12-09','2025-02-16','2025-09-29','2025-12-13','2026-04-26'];
+var el=document.getElementById('d');
+ds.forEach(function(d){var x=(Date.parse(d)-t0)/(t1-t0)*W;var i=document.createElement('i');
+ if(d==='2022-05-27')i.className='g';i.style.left=x+'px';el.appendChild(i);});
+var g=document.getElementById('gap');
+var a=(Date.parse('2021-08-27')-t0)/(t1-t0)*W, b=(Date.parse('2023-05-22')-t0)/(t1-t0)*W;
+g.style.left=(64+a)+'px'; g.style.width=(b-a)+'px';
+</script></body></html>

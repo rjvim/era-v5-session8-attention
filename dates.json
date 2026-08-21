@@ -1,0 +1,370 @@
+{
+  "_policy": {
+    "date_meaning": "For arXiv papers, the date is the v1 submission timestamp as shown on the arXiv abstract page ('[v1] <day>, <date> UTC'). NOT the conference publication date, NOT the last-revised date, NOT the journal date. For non-paper releases (forum posts, model launches), the date is the public release/post date from the primary channel.",
+    "verification": "verified = the v1 line or primary release note was read directly. unverified = not yet checked; MUST NOT ship.",
+    "why": "Assignment explicitly warns that agents invent launch dates. Every entry here is independently checkable via source_url."
+  },
+  "entries": [
+    {
+      "id": "gqa",
+      "name": "Grouped-Query Attention (GQA)",
+      "date": "2023-05-22",
+      "date_precision": "day",
+      "arxiv": "2305.13245",
+      "v1_line": "[v1] Mon, 22 May 2023 17:16:38 UTC",
+      "source_url": "https://arxiv.org/abs/2305.13245",
+      "status": "verified"
+    },
+    {
+      "id": "rope",
+      "name": "Rotary Position Embedding (RoPE)",
+      "date": "2021-04-20",
+      "date_precision": "day",
+      "arxiv": "2104.09864",
+      "v1_line": "[v1] Tue, 20 Apr 2021 09:54:06 UTC",
+      "note": "Paper title is RoFormer. v1 abstract states English benchmarks were still 'undergoing' - it shipped with Chinese results only. RoPE's dominance was retroactive, via LLaMA in 2023.",
+      "source_url": "https://arxiv.org/abs/2104.09864",
+      "status": "verified"
+    },
+    {
+      "id": "alibi",
+      "name": "ALiBi (Attention with Linear Biases)",
+      "date": "2021-08-27",
+      "date_precision": "day",
+      "arxiv": "2108.12409",
+      "note": "Press, Smith, Lewis. Later ICLR 2022 - do NOT use 2022 as the date; that is the conference year, a common error.",
+      "source_url": "https://arxiv.org/abs/2108.12409",
+      "corroborating_source": "https://www.semanticscholar.org/paper/9ca329408813d209b1dcb36936f7f9cba82506bd",
+      "status": "verified"
+    },
+    {
+      "id": "ntk_aware",
+      "name": "NTK-aware scaled RoPE",
+      "date": "2023-06",
+      "date_precision": "month",
+      "arxiv": null,
+      "note": "NOT a paper. Reddit post by user bloc97 on r/LocalLLaMA. Dated 'June 2023' in the bibliography of the DroPE paper (Sakana AI), which cites it directly as a Reddit post.",
+      "source_url": "https://www.reddit.com/r/LocalLLaMA/comments/14lz7j5/ntkaware_scaled_rope_allows_llama_models_to_have/",
+      "corroborating_source": "https://arxiv.org/pdf/2512.12167",
+      "status": "verified",
+      "author_link": "Bowen Peng = Reddit /u/bloc97 (stated in the YaRN paper author block, ar5iv HTML). Same person authored the June 2023 Reddit post AND the Aug 2023 YaRN paper.",
+      "link_verified": "URL confirmed as the canonical citation in 8+ independent papers (Meta 2309.16039, L-Eval 2307.11088, survey 2311.12351, Jet-Long 2607.07740, Mamba Modulation 2509.19633, Extensible Tokenization 2401.07793, controlled study 2409.12181, TGI issue #512). Not fetched directly; corroboration is stronger than a single fetch.",
+      "companion": "Dynamic NTK by /u/emozilla is a SECOND unpublished Reddit mechanism in the same cluster: r/LocalLLaMA/comments/14mrgpr/. bloc97's own post credits u/kaiokendev in the first person for the linear-interpolation idea."
+    },
+    {
+      "id": "dsa",
+      "name": "DeepSeek Sparse Attention (DSA)",
+      "date": "2025-09-29",
+      "date_precision": "day",
+      "arxiv": "2512.02556",
+      "note": "Shipped in DeepSeek-V3.2-Exp on 2025-09-29 with a tech report on GitHub but NO dedicated arXiv paper at launch. The formal paper (DeepSeek-V3.2) came later, Dec 2025. Timeline uses the ship date, since that is when the mechanism actually appeared.",
+      "source_url": "https://api-docs.deepseek.com/news/news250929/",
+      "status": "verified"
+    },
+    {
+      "id": "drope",
+      "name": "DroPE",
+      "date": "2025-12-13",
+      "date_precision": "day",
+      "arxiv": "2512.12167",
+      "note": "Gelberg, Eguchi, Akiba, Cetin (Sakana AI + Univ. of Oxford). Pretrain WITH RoPE, then remove positional embeddings entirely and briefly recalibrate at the ORIGINAL context length. Recalibration costs <1% of pretraining budget. Beats PI, NTK-RoPE and YaRN zero-shot; validated to 7B params / trillion-token models. The newest item on the timeline and the one that closes the loop: it argues the position mechanism the field spent 2021-2023 patching should simply be deleted after training.",
+      "source_url": "https://arxiv.org/abs/2512.12167",
+      "status": "verified",
+      "v1_line": "[v1] Sat, 13 Dec 2025 04:23:47 UTC",
+      "cor": "https://sakana.ai/drope/"
+    },
+    {
+      "id": "scaled_dot_product",
+      "name": "Scaled dot-product attention",
+      "date": "2017-06-12",
+      "date_precision": "day",
+      "arxiv": "1706.03762",
+      "note": "Attention Is All You Need. Sinusoidal positional encoding comes from this SAME paper and shares its date; it has its own card because the brief lists it separately.",
+      "source_url": "https://arxiv.org/abs/1706.03762",
+      "status": "verified",
+      "v1_line": "[v1] Submitted on 12 Jun 2017 (v1), last revised 2 Aug 2023 (v7)"
+    },
+    {
+      "id": "learned_abs_pos",
+      "name": "Learned absolute position embeddings",
+      "date": "2017-05-08",
+      "date_precision": "day",
+      "arxiv": "1705.03122",
+      "note": "Gehring et al, ConvS2S (Facebook AI Research). Learned absolute position embeddings PREDATE the Transformer by 35 days. Vaswani et al. cite this paper as ref [9]. Timeline consequence: the first item chronologically is NOT attention.",
+      "source_url": "https://arxiv.org/abs/1705.03122",
+      "status": "verified",
+      "v1_line": "Published 8 May 2017 in cs.CL (1705.03122)",
+      "corroborating_source": "https://www.semanticscholar.org/paper/43428880d75b3a14257c3ee9bda054e61eb869c0"
+    },
+    {
+      "id": "sparse_attn",
+      "name": "Sparse Transformer (strided/fixed sparsity)",
+      "date": "2019-04-23",
+      "date_precision": "day",
+      "arxiv": "1904.10509",
+      "note": "Child, Gray, Radford, Sutskever (OpenAI). Reduces O(n^2) to O(n*sqrt(n)) via strided/fixed factorisations. FIXED patterns chosen by hand - the contrast with later LEARNED sparsity (NSA/DSA, 2025) is the whole six-year arc of the sparse-attention branch.",
+      "source_url": "https://arxiv.org/abs/1904.10509",
+      "status": "verified",
+      "v1_line": "[Submitted on 23 Apr 2019] - single version, never revised",
+      "corroborating_source": "https://www.semanticscholar.org/paper/21da617a0f79aabf94272107184606cefe90ab75"
+    },
+    {
+      "id": "mqa",
+      "name": "Multi-Query Attention (MQA)",
+      "date": "2019-11-06",
+      "date_precision": "day",
+      "arxiv": "1911.02150",
+      "note": "Shazeer (sole author), 'Fast Transformer Decoding: One Write-Head is All You Need'. Month confirmed via arXiv ID 1911 and multiple secondary indexes; exact DAY not yet exposed in any source read so far - deliberately left at month precision rather than guessed. Day upgraded from page-index date; evidence class recorded as weaker than the rest of the ledger.",
+      "source_url": "https://arxiv.org/abs/1911.02150",
+      "status": "verified",
+      "evidence_class": "WEAKER: arXiv abs page indexed date, single-version paper (no revisions), so page date = v1. No explicit [v1] line located."
+    },
+    {
+      "id": "sliding_window",
+      "name": "Sliding-window attention",
+      "date": "2020-04-10",
+      "date_precision": "day",
+      "arxiv": "2004.05150",
+      "note": "Beltagy, Peters, Cohan (AI2). ORIGIN of local windowed attention as a drop-in replacement for full self-attention, combined with task-motivated global attention. Timeline placement uses this origin date. ADOPTION came much later: Mistral 7B (Sep 2023) made sliding-window standard practice in decoder LLMs, and Gemma 3 / Olmo 3 use it now. Card shows both; the 3.5-year gap between invention and adoption is itself a finding.",
+      "source_url": "https://arxiv.org/abs/2004.05150",
+      "status": "verified",
+      "v1_line": "[v1] Fri, 10 Apr 2020 17:54:09 UTC",
+      "corroborating_source": "https://arxiv.org/abs/2004.05150v1",
+      "adoption_note": "Mistral 7B popularised SWA in decoder-only LLMs, Sep 2023 (arXiv 2310.06825). Not yet independently date-verified; card must label it 'adoption' not 'origin'."
+    },
+    {
+      "id": "linear_attn",
+      "name": "Linear attention",
+      "date": "2020-06-29",
+      "date_precision": "day",
+      "arxiv": "2006.16236",
+      "note": "Katharopoulos, Vyas, Pappas, Fleuret (EPFL/Idiap). Drops softmax so QK^T V can be re-associated to (K^T V) first - O(N) and a fixed-size recurrent state. Claims up to 4000x faster autoregressive decoding. This is the exact 'take Q out, keep state S' derivation taught in Session 8.",
+      "source_url": "https://arxiv.org/abs/2006.16236",
+      "status": "verified",
+      "corroborating_source": "https://www.alphaxiv.org/abs/2006.16236v1"
+    },
+    {
+      "id": "delta_rule",
+      "name": "Delta rule / fast-weight programmers",
+      "date": "2021-02-22",
+      "date_precision": "day",
+      "arxiv": "2102.11174",
+      "note": "Schlag, Irie, Schmidhuber (IDSIA). Proves linearised self-attention is formally equivalent to Fast Weight Programmers (Schmidhuber, Neural Computation 1992). Replaces linear attention's purely ADDITIVE outer-product update with a delta-rule update so the state can CORRECT an existing key->value mapping instead of only accumulating. This is the 'don't write 95, write +15' idea taught in Session 8.",
+      "source_url": "https://arxiv.org/abs/2102.11174",
+      "status": "verified",
+      "v1_line": "[v1] Mon, 22 Feb 2021 16:51:38 UTC",
+      "cor": "https://proceedings.mlr.press/v139/schlag21a.html",
+      "ancestor": "Schmidhuber, J. (1992). 'Learning to control fast-weight memories: An alternative to dynamic recurrent networks.' Neural Computation 4(1):131-139."
+    },
+    {
+      "id": "pos_interp",
+      "name": "Position Interpolation (PI)",
+      "date": "2023-06-27",
+      "date_precision": "day",
+      "arxiv": "2306.15595",
+      "note": "Chen, Wong, Chen, Tian (Meta). Linearly down-scales position indices into the pretrained range instead of extrapolating past it; extends LLaMA to 32768 with <1000 fine-tuning steps. NOT on the instructor's list, but NTK-aware and YaRN are both direct responses to it - omit it and that stretch of the timeline has no cause. The PI paper itself credits blogger 'kaiokendev' for a concurrent 2K->8K interpolation.",
+      "source_url": "https://arxiv.org/abs/2306.15595",
+      "status": "verified",
+      "v1_line": "[v1] Submitted on 27 Jun 2023 (v1), last revised 28 Jun 2023 (v2)",
+      "corroborating_source": "https://www.emergentmind.com/papers/2306.15595"
+    },
+    {
+      "id": "yarn",
+      "name": "YaRN",
+      "date": "2023-08-31",
+      "date_precision": "day",
+      "arxiv": "2309.00071",
+      "note": "Peng, Quesnelle, Fan, Shippole (Nous Research / EleutherAI / Univ. of Geneva). Claims 10x fewer tokens and 2.5x fewer steps than prior extension methods. Unlike PI and NTK it still requires fine-tuning.",
+      "source_url": "https://arxiv.org/abs/2309.00071",
+      "status": "verified",
+      "v1_line": "[v1] Thu, 31 Aug 2023 18:18:07 UTC",
+      "corroborating_source": "https://ar5iv.labs.arxiv.org/html/2309.00071"
+    },
+    {
+      "id": "attn_sinks",
+      "name": "Attention sinks (StreamingLLM)",
+      "date": "2023-09-29",
+      "date_precision": "day",
+      "arxiv": "2309.17453",
+      "note": "Xiao, Tian, Chen, Han, Lewis (MIT/Meta/CMU/NVIDIA). Later ICLR 2024 - do NOT date it 2024. Note it is a DISCOVERY (initial tokens act as a no-op attention dump) turned into a fix, not a designed mechanism.",
+      "source_url": "https://arxiv.org/abs/2309.17453",
+      "status": "verified",
+      "v1_line": "[v1] Fri, 29 Sep 2023 17:59:56 UTC"
+    },
+    {
+      "id": "mla",
+      "name": "Multi-head Latent Attention (MLA)",
+      "date": "2024-05-07",
+      "date_precision": "day",
+      "arxiv": "2405.04434",
+      "note": "Introduced inside the DeepSeek-V2 model paper, not a standalone attention paper. Claims 93.3% KV cache reduction vs DeepSeek 67B. The V2 paper explicitly frames MLA as answering MQA (Shazeer 2019) and GQA (Ainslie 2023) - direct evidence of the timeline's cause-and-effect chain.",
+      "source_url": "https://arxiv.org/abs/2405.04434",
+      "status": "verified",
+      "v1_line": "[v1] Submitted on 7 May 2024 (v1), revised 8 May 2024 (v2)",
+      "corroborating_source": "https://huggingface.co/papers/2405.04434"
+    },
+    {
+      "id": "deltanet",
+      "name": "DeltaNet (parallelised)",
+      "date": "2024-06-10",
+      "date_precision": "day",
+      "arxiv": "2406.06484",
+      "note": "Yang, Wang, Zhang, Shen, Kim (MIT / Soochow / MIT-IBM Watson). NOT the invention of the delta rule - it is the hardware-efficient PARALLELISATION of it over sequence length, via Householder-matrix products (WY representation). The delta rule itself dates to Schlag/Irie/Schmidhuber 2021. This paper is what made DeltaNet trainable at language-model scale, which is why 2024 is when it starts appearing in real architectures.",
+      "source_url": "https://arxiv.org/abs/2406.06484",
+      "status": "verified",
+      "v1_line": "[v1] Submitted on 10 Jun 2024, latest version 15 Jan 2025 (v6)",
+      "corroborating_source": "https://huggingface.co/papers/2406.06484"
+    },
+    {
+      "id": "gated_deltanet",
+      "name": "Gated DeltaNet",
+      "date": "2024-12-09",
+      "date_precision": "day",
+      "arxiv": "2412.06464",
+      "note": "Yang, Kautz, Hatamizadeh (NVIDIA). Later ICLR 2025 - do NOT date it 2025. Adds a forget gate (alpha) to the delta rule: alpha->0 clears memory fast, alpha->1 reduces to pure delta rule. Paper itself proposes HYBRID stacks of Gated DeltaNet + sliding-window attention.",
+      "source_url": "https://arxiv.org/abs/2412.06464",
+      "status": "verified",
+      "v1_line": "[v1] Mon, 9 Dec 2024 13:09:04 UTC",
+      "corroborating_source": "https://huggingface.co/papers/2412.06464"
+    },
+    {
+      "id": "nsa",
+      "name": "Native Sparse Attention (NSA)",
+      "date": "2025-02-16",
+      "date_precision": "day",
+      "arxiv": "2502.11089",
+      "note": "DeepSeek-AI + Peking Univ + UW. NATIVELY TRAINABLE sparsity (trained sparse from scratch, hardware-aligned Triton kernels), reporting 9.0x forward / 6.0x backward / 11.6x decode speedups. Distinct from DSA (Sep 2025), which retrofits sparsity onto an already-dense checkpoint via a lightning indexer. Instructor treated these as one item.",
+      "source_url": "https://arxiv.org/abs/2502.11089",
+      "status": "verified",
+      "v1_line": "[v1] Sun, 16 Feb 2025 11:53:44 UTC",
+      "corroborating_source": "https://huggingface.co/papers/2502.11089"
+    },
+    {
+      "id": "flashattention",
+      "name": "FlashAttention",
+      "date": "2022-05-27",
+      "date_precision": "day",
+      "arxiv": "2205.14135",
+      "v1_line": "Submitted to arXiv on 27 May 2022",
+      "note": "Dao, Fu, Ermon, Rudra, Re (Stanford/Buffalo). NOT on the instructor's list and arguably not an attention VARIANT at all - it computes EXACT softmax attention, unchanged, but tiles it to avoid materialising the NxN matrix in HBM. That distinction is the point: it is an IO optimisation, not a maths change. Included because it is the only thing that explains the gap in the timeline.",
+      "source_url": "https://arxiv.org/abs/2205.14135",
+      "corroborating_source": "https://www.semanticscholar.org/paper/87c5b281fa43e6f27191b20a8dd694eda1126336",
+      "status": "verified",
+      "category": "context_for_gap"
+    },
+    {
+      "id": "csa_hca",
+      "name": "CSA + HCA (DeepSeek-V4)",
+      "date": "2026-04-26",
+      "date_precision": "day",
+      "arxiv": "2606.19348",
+      "v1_line": "[v1] Sun, 26 Apr 2026 14:49:33 UTC",
+      "note": "DeepSeek-AI. Two NEW attention mechanisms not on the assignment list: Compressed Sparse Attention (consolidate every m KV entries, then DSA-style top-k over them) and Heavily Compressed Attention (larger compression rate, dense attention over the remainder), interleaved. 27% of single-token inference FLOPs and 10% of KV cache vs DeepSeek-V3.2 at 1M context. Direct successor to DSA.",
+      "source_url": "https://arxiv.org/abs/2606.19348",
+      "status": "verified"
+    },
+    {
+      "id": "sinusoidal",
+      "name": "Sinusoidal position encoding",
+      "date": "2017-06-12",
+      "date_precision": "day",
+      "arxiv": "1706.03762",
+      "v1_line": "[v1] Submitted on 12 Jun 2017",
+      "source_url": "https://arxiv.org/abs/1706.03762",
+      "note": "Same paper and date as scaled dot-product attention. Given a dedicated card because the brief lists it as a separate item and because the two are separable design decisions whose descendants diverged (RoPE vs ALiBi).",
+      "status": "verified"
+    },
+    {
+      "id": "topk",
+      "name": "Top-k attention",
+      "date": "2021-06-13",
+      "date_precision": "day",
+      "arxiv": "2106.06899",
+      "v1_line": "arXiv:2106.06899v1 [cs.CL] 13 Jun 2021",
+      "source_url": "https://arxiv.org/abs/2106.06899",
+      "note": "Gupta, Dar, Goodman, Ciprut, Berant (Tel Aviv). SustaiNLP@EMNLP 2021 - do NOT use the workshop date. Keeps only each query's k largest scores, chunked so the full matrix is never materialised. Notable for dropping into a vanilla pretrained model with no corrective pretraining. Direct ancestor of DSA's learned top-k selection.",
+      "status": "verified"
+    }
+  ],
+  "q2_findings": [
+    {
+      "finding": "The instructor's DDDG layer schedule is convergent with shipped frontier practice, not bespoke.",
+      "detail": "Qwen3-Next / Qwen3.5 interleave Gated DeltaNet linear layers with full softmax attention at full_attention_interval=4, giving [linear, linear, linear, full_attention, ...] - ~75% linear, ~25% full. This is structurally identical to the 3x DeltaNet + 1x GQA block taught in Session 8. The Gated DeltaNet paper itself also proposes hybrids with sliding-window attention.",
+      "source": "https://gist.github.com/justinchuby/0213aa253664fb72e9adb0089816de15"
+    },
+    {
+      "finding": "The RoPE context-extension branch did not originate in a lab. It began as a Reddit post.",
+      "detail": "NTK-aware scaled RoPE was posted by /u/bloc97 to r/LocalLLaMA in June 2023, with no paper. Two months later the same person - Bowen Peng - is first author on YaRN (31 Aug 2023, Nous Research/EleutherAI). The YaRN paper's author block lists his Reddit handle directly. As late as Dec 2025, Sakana AI's DroPE paper still cites the Reddit post itself as the canonical NTK reference. A timeline makes this visible; a list of 'mechanisms' hides that one of them has no paper at all. This extends further: the Position Interpolation paper (Meta, 27 Jun 2023) itself credits independent blogger 'kaiokendev' for a concurrent 2K->8K RoPE interpolation. The whole mid-2023 context-extension cluster - PI, NTK-aware, YaRN - is community-driven, with labs and formal papers arriving after the hobbyists.",
+      "sources": [
+        "https://ar5iv.labs.arxiv.org/html/2309.00071",
+        "https://arxiv.org/pdf/2512.12167"
+      ]
+    },
+    {
+      "finding": "The most modern-looking branch of the timeline is the oldest idea on it.",
+      "detail": "DeltaNet / Gated DeltaNet read as 2024-2025 inventions. But Schlag, Irie & Schmidhuber (Feb 2021) prove linearised attention is formally equivalent to Fast Weight Programmers, which Schmidhuber published in Neural Computation in 1992 - twenty-five years BEFORE Attention Is All You Need. What happened in 2024 was not the invention of the delta rule but its hardware-efficient parallelisation over sequence length (Householder/WY representation), which finally made it trainable at LLM scale. In date order the field is visibly rediscovering pre-transformer recurrent memory once the quadratic bill got unaffordable.",
+      "sources": [
+        "https://arxiv.org/abs/2102.11174",
+        "https://arxiv.org/abs/2406.06484"
+      ]
+    },
+    {
+      "finding": "The positional-encoding thread ends by arguing the mechanism should be thrown away.",
+      "detail": "In date order the position branch runs: learned absolute (May 2017) -> sinusoidal (Jun 2017) -> RoPE (Apr 2021) -> ALiBi (Aug 2021) -> then a dense 2023 cluster of PATCHES to RoPE (PI Jun, NTK Jun, YaRN Aug) -> and finally DroPE (Dec 2025), which says positional embeddings are a training scaffold to be REMOVED after pretraining. Six years of adding positional machinery, then a paper showing the best long-context behaviour comes from deleting it. That reversal is invisible in a grouped list and unmissable on a timeline.",
+      "sources": [
+        "https://arxiv.org/abs/2512.12167",
+        "https://sakana.ai/drope/"
+      ]
+    },
+    {
+      "finding": "The timeline has a 20-month hole, and the hole is the most informative thing on it.",
+      "detail": "Between ALiBi (27 Aug 2021) and GQA (22 May 2023) there is NOTHING on the instructor's list - a 20-month silence spanning ChatGPT's launch and the loudest period of the LLM boom. The explanation sits in the gap: FlashAttention (27 May 2022) made EXACT attention dramatically faster by tiling to avoid materialising the NxN matrix in GPU HBM, without approximating anything. When exact attention got cheap, the incentive to approximate it collapsed, and the 2019-2021 wave of sparse/linear/windowed approximations stalled. The wave restarts in 2023 - but with a different motive. Pre-2022 work optimised TRAINING compute; post-2023 work (GQA, MLA, sinks, sparse) optimises INFERENCE serving, because the bill moved from training the model to serving it to millions of users. Same quadratic problem, different payer.",
+      "sources": [
+        "https://arxiv.org/abs/2205.14135",
+        "https://arxiv.org/abs/2305.13245"
+      ]
+    },
+    {
+      "finding": "Two mechanisms shipped four months before the session that are not on the list.",
+      "detail": "DeepSeek-V4 (26 Apr 2026, arXiv 2606.19348) introduces Compressed Sparse Attention and Heavily Compressed Attention. They are the direct continuation of DSA: compress the sequence dimension first, then select sparsely over what remains, with a second more aggressive compressor running dense attention alongside. Reported 27% of single-token inference FLOPs and 10% of KV cache versus DeepSeek-V3.2 at one-million-token context. The timeline's final move is the field splitting the bill in two - one mechanism for memory, one for compute - rather than looking for a single trade that fixes both.",
+      "sources": [
+        "https://arxiv.org/abs/2606.19348"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "lead": "RESOLVED: DeepSeek-V4 confirmed real, dated, and added as csa_hca."
+    }
+  ],
+  "_verification_complete": true,
+  "claims_provenance": {
+    "_note": "Every quantitative performance figure quoted on the page, and where it came from. The brief warns that agents describe 'a technique they have half remembered'. Dates were the obvious risk; performance numbers are the quieter one. Each figure below was read from the paper's own abstract, release note, or a page quoting it verbatim - not recalled.",
+    "verified_from_source_this_build": {
+      "alibi": "11% faster / 11% less memory, 1.3B model trained at 1024 evaluated at 2048 - arXiv abstract 2108.12409",
+      "attn_sinks": "4 million tokens; up to 22.2x vs sliding-window-with-recomputation; four initial tokens suffice - arXiv abstract + PDF 2309.17453",
+      "mla": "93.3% KV cache reduction vs DeepSeek 67B; 5.76x max generation throughput - DeepSeek-V2 paper 2405.04434",
+      "nsa": "up to 9.0x forward / 6.0x backward / 11.6x decode at 64k - NSA paper 2502.11089",
+      "dsa": "50%+ API price cut on release; parity with V3.1-Terminus - DeepSeek release note 2025-09-29",
+      "csa_hca": "27% of single-token inference FLOPs, 10% of KV cache vs V3.2 at 1M context - DeepSeek-V4 2606.19348",
+      "drope": "recalibration under 1% of pretraining budget; validated to 7B params / trillion-token - DroPE 2512.12167",
+      "yarn": "10x fewer tokens, 2.5x fewer steps than prior extension methods - YaRN 2309.00071",
+      "pos_interp": "LLaMA to 32768 in under 1000 fine-tuning steps; interpolation error ~600x smaller than extrapolation - PI 2306.15595",
+      "linear_attn": "up to 4000x faster autoregressive decoding - Transformers are RNNs 2006.16236",
+      "gqa": "uptrain from MHA for ~5% of original pretraining compute - GQA 2305.13245",
+      "flashattention": "3x on GPT-2, 2.4x on long-range arena, 15% on BERT-large - FlashAttention 2205.14135",
+      "sparse_attn": "O(N*sqrt(N)) via factorised attention - Sparse Transformers 1904.10509",
+      "topk": "O(nkd) time; no corrective pretraining required - Top-k Attention 2106.06899",
+      "gated_deltanet": "outperforms Mamba2 and DeltaNet; shipped in Qwen3-Next at full_attention_interval=4 - 2412.06464 + Qwen3-Next config"
+    },
+    "corrections_made_during_audit": [
+      "ALiBi: originally stated '11% faster with 11% less memory at equal quality', which omitted that the saving comes from training on SHORTER sequences. Now states the comparison basis explicitly.",
+      "Attention sinks: '22.2x faster' -> 'up to 22.2x'. The paper says 'up to'; stating it flat overclaims.",
+      "NSA: '9.0x forward...' -> 'up to 9.0x ... at 64k length'. Same reason, plus the sequence length the figure depends on.",
+      "Attention sinks: 'keep 4 initial tokens' -> 'the first few tokens (four suffice)', matching the paper's wording."
+    ]
+  },
+  "file_consistency": {
+    "checked": "data.js, dates.json and the README source table cross-verified: 0 date mismatches, 0 arXiv-id mismatches, 0 orphans, 0 missing README rows."
+  }
+}

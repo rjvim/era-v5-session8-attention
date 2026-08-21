@@ -1,0 +1,15 @@
+node_modules/
+package-lock.json
+
+# build/verification byproducts, regenerate with `node build.js`
+prerendered*.html
+pr.html
+*.png
+!og-image.png
+!docs/preview.png
+prose*.txt
+raw*.txt
+misspell.txt
+dict.txt
+allow.txt
+.aspell*
